@@ -7,6 +7,7 @@
 </template>
 
 <script>
+const browser = require("webextension-polyfill")
 export default {
   props: ['imgsrc','imgsize'], 
   computed: {
@@ -21,8 +22,8 @@ export default {
 </script>
 
 <style scoped>
-  img {
+  /* img {
     width: 50%;
     height: 200px;
-  }
+  } */
 </style>
