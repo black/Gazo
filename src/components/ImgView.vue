@@ -1,22 +1,14 @@
 <template>
   <div>
-    <img v-bind:src='imgsrc' alt="">
+    <img v-bind:src='imgsrc' alt=""><br>
+    <span>SIZE:{{imgsize}}</span><br>
     <a v-bind:href='imgsrc' download>DOWNLOAD</a>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['imgsrc'],
-  methods: {
-    getImgSize(url, callback) { 
-      let img = new Image();
-      img.src = url;
-      img.onload = function() { 
-        callback(this.width, this.height); 
-      }
-    }
-  },
+  props: ['imgsrc','imgsize'], 
   computed: {
     defaultText() {
       return browser.i18n.getMessage('extName')

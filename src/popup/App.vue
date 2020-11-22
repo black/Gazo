@@ -4,7 +4,7 @@
       {{title}}
     </span>
     <ul>
-      <ImgView v-for="img in getImages" :key="img" v-bind:imgsrc="img" />
+      <ImgView v-for="(img,idx) in getImages" :key="imsizes[idx]" v-bind:imgsrc="img"  v-bind:imgsize="imsizes[idx]" v-on:load="getImgSize(img)"/>
     </ul>
   </div>
 </template>
@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       title: 'IMAGE DOWNLOADER',
-      imgsrc: [] 
+      imgsrc: [],
+      imsizes:[] 
     }
   },
   computed: {
@@ -35,10 +36,23 @@ export default {
         browser.tabs
           .sendMessage(tabs[0].id, { msg: 'getimages' })
           .then((res) => {
-            this.imgsrc = res.msg;
-            console.log("response come here",res.msg);
+            this.imgsrc = res.msg; 
           });
       });    
+    }, 
+    getImgSize(url) { 
+      let img = new Image();
+      img.src = url;
+      img.onload = function() { 
+        console.log({
+          "w":this.width,
+          "h":this.height
+        });
+        this.imsizes.push({
+          "w":this.width,
+          "h":this.height
+        })
+      }
     }
   },
   mounted () {
