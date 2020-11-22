@@ -11,9 +11,13 @@
           <img class="filters" src="../assets/filter.svg" alt="" v-on:click="filter()">
         </div>
       </div>
+      <div class="filterSlider" v-show="filterView" >
+        <input type="range" v-model="min_width" min=0 max=2000>
+        {{min_width}}
+      </div>
     </nav>
     <div class="container">
-      <ImgView v-bind:class="viewType?'cards-2':'cards-4'" v-for="(img,idx) in getImages" :key="imsizes[idx]" v-bind:imgsrc="img"  v-bind:imgsize="imsizes[idx]" v-on:load="getImgSize(img)"/>
+      <ImgView v-bind:class="viewType?'cards-2':'cards-4'" v-for="(img,idx) in getImages" :key="idx" v-bind:imgsrc="img" v-bind:dimension="min_width" />
     </div>
   </div>
 </template>
@@ -34,7 +38,9 @@ export default {
       imgsrc: [],
       imsizes:[],
       imgcount:'Fetching...',
-      viewType:false 
+      viewType:false,
+      filterView:false,
+      min_width:0 
     }
   },
   computed: {
@@ -56,24 +62,10 @@ export default {
             this.imgcount = this.imgsrc.length
           });
       });    
-    }, 
-    getImgSize(url) { 
-      let img = new Image();
-      img.src = url;
-      img.onload = function() { 
-        console.log({
-          "w":this.width,
-          "h":this.height
-        });
-        this.imsizes.push({
-          "w":this.width,
-          "h":this.height
-        })
-      }
-    },
+    },  
     filter(){
-      
-    }
+      this.filterView = !this.filterView;
+    } 
   },
   mounted () {
      this.findImages()
@@ -98,7 +90,6 @@ export default {
   }
 
   .nav{ 
-    padding: 10px;
     width: 100%;
     background: white;
     position: fixed;
@@ -112,6 +103,7 @@ export default {
     justify-content: space-between;
     align-items: center;  
     font: bold;
+    padding: 10px;
   }
   .brand{
     display: block;
@@ -139,11 +131,7 @@ export default {
   .cards-4{
     flex: 1 0 25%; 
   }
-
-  /* .cards:hover{
-      flex: 1 0 50%;
-  } 
-   */
+ 
   .filters{
     cursor: pointer;
     opacity: 0.5;
@@ -153,6 +141,13 @@ export default {
   }
   .filters:hover{
     opacity: 1;
+  }
+
+  .filterSlider{
+    display: flex;
+    justify-content: stretch;
+    background: #f8f8f8;
+    padding: 10px;
   }
 
 </style>

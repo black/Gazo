@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <img v-bind:src='imgsrc' alt=""><br> 
+  <div class="container" v-show="checkDim">
+    <img v-bind:src='imgsrc' alt="" v-on:load="onImgLoad" ref="imgeView"><br> 
     <a v-bind:href='imgsrc' download>DOWNLOAD</a>
   </div>
 </template>
@@ -8,13 +8,27 @@
 <script>
 const browser = require("webextension-polyfill")
 export default {
-  props: ['imgsrc','imgsize'], 
+  props: ['imgsrc','dimension'], 
+  data(){
+    return{
+      img_size:0,
+    }
+  },
   computed: {
     defaultText() {
       return browser.i18n.getMessage('extName')
+    },
+    checkDim(){ 
+      return this.img_size>this.dimension?true:false;
     }
   }, 
-  mounted() {
+  methods:{ 
+    onImgLoad() { 
+       console.log("hellow",this.$refs.imgeView.width);
+       this.img_size = this.$refs.imgeView.width;
+    }
+  },
+  mounted() { 
     browser.runtime.sendMessage({})
   }
 }
@@ -50,6 +64,10 @@ export default {
  
 .container:hover  > a{
   display: block; 
+}
+
+.hide{
+  display: none;
 }
   /* img {
     width: 50%;
