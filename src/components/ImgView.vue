@@ -1,7 +1,7 @@
 <template>
   <div>
     <img v-bind:src='imgsrc' alt="">
-    <button v-on:click="download()">DOWNLOAD</button>
+    <a v-bind:href='imgsrc' download>DOWNLOAD</a>
   </div>
 </template>
 
@@ -9,21 +9,23 @@
 export default {
   props: ['imgsrc'],
   methods: {
-    download () {
-      console.log(this.imgsrc)
-      console.log('download')
+    getImgSize(url, callback) { 
+      let img = new Image();
+      img.src = url;
+      img.onload = function() { 
+        callback(this.width, this.height); 
+      }
     }
   },
   computed: {
-    defaultText () {
+    defaultText() {
       return browser.i18n.getMessage('extName')
     }
-  },
-  mounted () {
+  }, 
+  mounted() {
     browser.runtime.sendMessage({})
   }
 }
-
 </script>
 
 <style scoped>
@@ -31,5 +33,4 @@ export default {
     width: 50%;
     height: 200px;
   }
-
 </style>
