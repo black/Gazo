@@ -7,7 +7,7 @@
           <span class="info">IMAGES {{imgcount}}</span>
         </div>
         <div>
-          <img class="filters" src="../assets/grid.svg" alt="" v-on:click="changeView()">
+          <img class="filters" :src="viewType?require('../assets/grid-2.svg'):require('../assets/grid-4.svg')" alt="" v-on:click="changeView()">
           <img class="filters" src="../assets/filter.svg" alt="" v-on:click="filter()">
         </div>
       </div>
@@ -40,11 +40,12 @@ export default {
   computed: {
     getImages(){ 
       return this.imgsrc;
-    }
+    }, 
   },
   methods: {
     changeView(){
       this.viewType =!this.viewType;
+      console.log(this.viewType);
     },
     findImages(){   
       browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
