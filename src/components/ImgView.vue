@@ -21,8 +21,10 @@ export default {
 </script>
 
 <style scoped>
-.container{ 
-  border: 1px solid #eee;
+.container{  
+  position: relative; 
+  padding: 0;
+  background: rgba(25, 0, 255, 0.124);
 }
 .container img{ 
   width: 100%;
@@ -30,6 +32,9 @@ export default {
 }
 
 .container a{
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: none;
   width: 100%;
   text-decoration: none;
@@ -38,11 +43,13 @@ export default {
   font-size: 12px;
   text-align: center;
   padding: 5% 0;
+  background:blue;
+  color: white;
 }
 
  
 .container:hover  > a{
-  display: block;
+  display: block; 
 }
   /* img {
     width: 50%;

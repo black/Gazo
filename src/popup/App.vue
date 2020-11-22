@@ -13,7 +13,7 @@
       </div>
     </nav>
     <div class="container">
-      <ImgView v-bind:class="viewType?'cards-2':'card-4'" v-for="(img,idx) in getImages" :key="imsizes[idx]" v-bind:imgsrc="img"  v-bind:imgsize="imsizes[idx]" v-on:load="getImgSize(img)"/>
+      <ImgView v-bind:class="viewType?'cards-2':'cards-4'" v-for="(img,idx) in getImages" :key="imsizes[idx]" v-bind:imgsrc="img"  v-bind:imgsize="imsizes[idx]" v-on:load="getImgSize(img)"/>
     </div>
   </div>
 </template>
@@ -92,6 +92,9 @@ export default {
   *{
     box-sizing: border-box;
   }
+  ::-webkit-scrollbar {
+      display: none;
+  }
 
   .nav{ 
     padding: 10px;
@@ -99,6 +102,7 @@ export default {
     background: white;
     position: fixed;
     box-shadow: 0 0 10px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
   }
 
   .navbar{
@@ -129,10 +133,10 @@ export default {
   }
 
   .cards-2{
-    flex: 1 0 25%;
+    flex: 1 0 50%; 
   }
   .cards-4{
-    flex: 1 0 50%;
+    flex: 1 0 25%; 
   }
 
   /* .cards:hover{
