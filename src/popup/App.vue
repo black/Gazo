@@ -13,7 +13,7 @@
       </div>
       <div class="filterSlider" v-show="filterView" >
         <input type="range" v-model="min_width" min=0 max=2000>
-        {{min_width}}
+        <span> {{min_width}}</span>
       </div>
     </nav>
     <div class="container">
@@ -122,7 +122,7 @@ export default {
   .container{
     display: flex; 
     flex-wrap: wrap;
-    padding: 8% 1% 0%;
+    padding: 16% 1% 0%;
   }
 
   .cards-2{
@@ -144,10 +144,44 @@ export default {
   }
 
   .filterSlider{
-    display: flex;
-    justify-content: stretch;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
     background: #f8f8f8;
     padding: 10px;
+  }
+
+  input[type=range]{
+    -webkit-appearance: none;
+    width: 100%;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #fecd1a;
+    margin-top: -4px;
+  }
+
+  input[type=range]:focus {
+    outline: none;
+  }
+
+  input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #ccc;
   }
 
 </style>

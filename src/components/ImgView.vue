@@ -23,8 +23,7 @@ export default {
     }
   }, 
   methods:{ 
-    onImgLoad() { 
-       console.log("hellow",this.$refs.imgeView.width);
+    onImgLoad() {  
        this.img_size = this.$refs.imgeView.width;
     }
   },
