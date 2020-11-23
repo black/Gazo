@@ -1,4 +1,5 @@
-# gazo
+# Gazō 
+## (画像)
 A chome extension to scrape images from current tab
 
 ### How to use? 
