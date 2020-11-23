@@ -1,6 +1,9 @@
 # gazo
 A chome extension to scrape images from current tab
 
+How to use? 
+Dowload the dist folder and load it in your chrome browser
+
 
 Features
 
