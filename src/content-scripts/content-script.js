@@ -1,17 +1,38 @@
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    // Once we receive a message from the popup
-    if (request.msg) {
-        // If message has the `action` key `print_in_console`
-        var images = [];
-        if (request.msg === "getimages") {
-            for (var i = 0; i < document.images.length; i++) {
-                let s_r_c = document.images[i].src
-                images.push(s_r_c);
-                console.log(s_r_c)
-            }
-        }
-        sendResponse({
-            msg: images
-        })
-    }
+//MutationObserver
+const config = {
+    childList: true,
+    subtree: true
+}
+const targeNode = document.getElementsByTagName('body')[0];
+const observer = new MutationObserver(function () {
+    console.log("new changes updated...");
+    chrome.runtime.sendMessage({
+        from: 'content observer',
+        data: fetchImgSrc()
+    }, function (res) {
+        console.log(res.from);
+    });
 });
+observer.observe(targeNode, config);
+
+function fetchImgSrc() {
+    let images = []
+    for (var i = 0; i < document.images.length; i++) {
+        let s_r_c = document.images[i].src
+        // console.log(s_r_c);
+        images.push(s_r_c);
+    }
+    return images;
+}
+
+// const targeNode = document.images; 
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//     // Once we receive a message from the 
+//     console.log("received...");
+//     if (request.msg === "getimages") {
+//         sendResponse({
+//             from: 'content onLoad',
+//             data: fetchImgSrc()
+//         });
+//     }
+// });

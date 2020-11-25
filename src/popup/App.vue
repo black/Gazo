@@ -14,6 +14,7 @@
       <div class="filterSlider" v-show="filterView" >
         <input type="range" v-model="min_width" min=0 max=2000>
         <span> {{min_width}}</span>
+        <!-- <RangeView /> -->
       </div>
     </nav>
     <div class="container">
@@ -25,11 +26,12 @@
 <script>
 const browser = require("webextension-polyfill")
 import ImgView from '@/components/ImgView.vue'
+// import RangeView from '@/components/RangeView.vue'
 
 export default {
   name: 'App',
   components: {
-    ImgView
+    ImgView 
   },
   data () {
     return {
@@ -52,23 +54,25 @@ export default {
     changeView(){
       this.viewType =!this.viewType;
       console.log(this.viewType);
-    },
-    findImages(){   
-      browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
-        browser.tabs
-          .sendMessage(tabs[0].id, { msg: 'getimages' })
-          .then((res) => {
-            this.imgsrc = res.msg; 
-            this.imgcount = this.imgsrc.length
-          });
-      });    
-    },  
+    }, 
     filter(){
       this.filterView = !this.filterView;
-    } 
+    },
+    getNewImages(){
+      browser.runtime.onMessage.addListener( (res, sender, sendResponse)=>{ 
+          this.imgsrc = [];
+          this.imgsrc = res.data;
+          this.imgcount = this.imgsrc.length
+          console.log("getting imgs",res.data) 
+          sendResponse({
+              from:'appvue',
+              data: "Received the images"
+          }); 
+      });
+    }
   },
-  mounted () {
-     this.findImages()
+  mounted () {  
+     this.getNewImages()
   }
 }
 

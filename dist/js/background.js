@@ -2437,13 +2437,13 @@ eval("\nvar $ = __webpack_require__(/*! ../internals/export */ \"./node_modules/
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/global.js":
-/*!************************************************!*\
-  !*** ./node_modules/webpack/buildin/global.js ***!
-  \************************************************/
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack:///./node_modules/webpack/buildin/global.js?");
+eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack:///(webpack)/buildin/global.js?");
 
 /***/ }),
 
@@ -2454,7 +2454,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./node_modules/core-js/modules/es.array.iterator.js */ \"./node_modules/core-js/modules/es.array.iterator.js\");\n\n__webpack_require__(/*! ./node_modules/core-js/modules/es.promise.js */ \"./node_modules/core-js/modules/es.promise.js\");\n\n__webpack_require__(/*! ./node_modules/core-js/modules/es.object.assign.js */ \"./node_modules/core-js/modules/es.object.assign.js\");\n\n__webpack_require__(/*! ./node_modules/core-js/modules/es.promise.finally.js */ \"./node_modules/core-js/modules/es.promise.finally.js\");\n\n//# sourceURL=webpack:///./src/background.js?");
+eval("__webpack_require__(/*! ./node_modules/core-js/modules/es.array.iterator.js */ \"./node_modules/core-js/modules/es.array.iterator.js\");\n\n__webpack_require__(/*! ./node_modules/core-js/modules/es.promise.js */ \"./node_modules/core-js/modules/es.promise.js\");\n\n__webpack_require__(/*! ./node_modules/core-js/modules/es.object.assign.js */ \"./node_modules/core-js/modules/es.object.assign.js\");\n\n__webpack_require__(/*! ./node_modules/core-js/modules/es.promise.finally.js */ \"./node_modules/core-js/modules/es.promise.finally.js\");\n\nchrome.runtime.onMessage.addListener(function (req, sender, sendResponse) {\n  // First, validate the message's structure.\n  if (req.from == 'content') {\n    // Enable the page-action for the requesting tab.\n    // chrome.pageAction.show(sender.tab.id);\n    console.log(\"new data\", sender.tab.id);\n    sendResponse({\n      from: 'background',\n      msg: req.imgsrc\n    });\n  }\n});\n\n//# sourceURL=webpack:///./src/background.js?");
 
 /***/ }),
 
@@ -2465,7 +2465,7 @@ eval("__webpack_require__(/*! ./node_modules/core-js/modules/es.array.iterator.j
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! C:\\Users\\BLACK\\Desktop\\GitHub\\gazo\\src\\background.js */\"./src/background.js\");\n\n\n//# sourceURL=webpack:///multi_./src/background.js?");
+eval("module.exports = __webpack_require__(/*! C:\\Users\\BLACK\\Desktop\\GitHub\\Gazo\\src\\background.js */\"./src/background.js\");\n\n\n//# sourceURL=webpack:///multi_./src/background.js?");
 
 /***/ })
 
