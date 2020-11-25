@@ -7,7 +7,7 @@
           <span class="info">IMAGES {{imgcount}}</span>
         </div>
         <div>
-          <img class="filters" :src="viewType?require('../assets/grid-2.svg'):require('../assets/grid-4.svg')" alt="" v-on:click="changeView()">
+          <img class="filters" :src="require('../assets/grid-'+viewType+'.svg')" alt="" v-on:click="changeView()">
           <img class="filters" src="../assets/filter.svg" alt="" v-on:click="filter()">
         </div>
       </div>
@@ -18,7 +18,7 @@
       </div>
     </nav>
     <div class="container">
-      <ImgView v-bind:class="viewType?'cards-2':'cards-4'" v-for="(img,idx) in getImages" :key="idx" v-bind:imgsrc="img" v-bind:dimension="min_width" />
+      <ImgView v-bind:class="'cards-'+viewType+''" v-for="(img,idx) in getImages" :key="idx" v-bind:imgsrc="img" v-bind:dimension="min_width" />
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
       imgsrc: [],
       imsizes:[],
       imgcount:'Fetching...',
-      viewType:false,
+      viewType:1,
       filterView:false,
       min_width:0 
     }
@@ -52,8 +52,8 @@ export default {
   },
   methods: {
     changeView(){
-      this.viewType =!this.viewType;
-      console.log(this.viewType);
+      if(this.viewType<2)this.viewType++;
+      else this.viewType = 0; 
     },
     // findImages(){   
     //   browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
@@ -85,8 +85,7 @@ export default {
       });
     }
   },
-  mounted () { 
-    //  this.findImages()
+  mounted () {  
      this.getNewImages()
   }
 }
@@ -143,11 +142,13 @@ export default {
     flex-wrap: wrap;
     padding: 16% 1% 0%;
   }
-
-  .cards-2{
+  .cards-0{
+    flex: 1 0 100%; 
+  }
+  .cards-1{
     flex: 1 0 50%; 
   }
-  .cards-4{
+  .cards-2{
     flex: 1 0 25%; 
   }
  
