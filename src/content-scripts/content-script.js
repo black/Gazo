@@ -5,7 +5,6 @@ const config = {
 }
 const targeNode = document.getElementsByTagName('body')[0];
 const observer = new MutationObserver(function () {
-    console.log("new changes updated...");
     chrome.runtime.sendMessage({
         from: 'content observer',
         data: fetchImgSrc()
@@ -25,9 +24,9 @@ function fetchImgSrc() {
     return images;
 }
 
-// const targeNode = document.images; 
+
 // chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//     // Once we receive a message from the 
+//     // Once we receive a message from the app vue
 //     console.log("received...");
 //     if (request.msg === "getimages") {
 //         sendResponse({

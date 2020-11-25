@@ -54,16 +54,30 @@ export default {
     changeView(){
       this.viewType =!this.viewType;
       console.log(this.viewType);
-    }, 
+    },
+    // findImages(){   
+    //   browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
+    //     browser.tabs
+    //       .sendMessage(tabs[0].id, {  from: 'appvue',msg: 'getimages' })
+    //       .then((res) => {
+    //         this.imgsrc = res.msg; 
+    //         this.imgcount = this.imgsrc.length
+    //         console.log("getting imgs",res.from);
+    //       });
+    //   });    
+    // },  
     filter(){
       this.filterView = !this.filterView;
     },
     getNewImages(){
-      browser.runtime.onMessage.addListener( (res, sender, sendResponse)=>{ 
-          this.imgsrc = [];
-          this.imgsrc = res.data;
-          this.imgcount = this.imgsrc.length
-          console.log("getting imgs",res.data) 
+      browser.runtime.onMessage.addListener( (res, sender, sendResponse)=>{   
+          for(let i=0;i<res.data.length;i++){
+            console.log("dataSrc",res.data[i]);
+            if(!this.imgsrc.includes(res.data[i]))
+              this.imgsrc.push(res.data[i]); 
+          } 
+          this.imgcount = this.imgsrc.length;
+          console.log("array length",this.imgcount);
           sendResponse({
               from:'appvue',
               data: "Received the images"
@@ -71,7 +85,8 @@ export default {
       });
     }
   },
-  mounted () {  
+  mounted () { 
+    //  this.findImages()
      this.getNewImages()
   }
 }
