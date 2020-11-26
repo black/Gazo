@@ -20,4 +20,7 @@ Features
   3. update the array with new url whne user scrolls the page and images gets updated dynamically
   4. fetch background images url - loaded via CSS 
 
+[Download](https://github.com/black/Gazo/blob/main/screen-capture.gif)
+
 ![preview](https://github.com/black/Gazo/blob/main/screen-capture.gif)
+
