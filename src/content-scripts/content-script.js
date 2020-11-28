@@ -5,18 +5,14 @@ const config = {
 }
 const targeNode = document.getElementsByTagName('body')[0];
 const observer = new MutationObserver(function () {
-    sendImageData();
-});
-observer.observe(targeNode, config);
-
-function sendImageData() {
     chrome.runtime.sendMessage({
         from: 'content observer',
         data: fetchImgSrc()
     }, function (res) {
         console.log(res.from);
     });
-}
+});
+observer.observe(targeNode, config);
 
 function fetchImgSrc() {
     let images = []
@@ -29,13 +25,13 @@ function fetchImgSrc() {
 }
 
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    // Once we receive a message from the app vue
-    console.log("received...");
-    if (request.msg === "getimages") {
-        sendResponse({
-            from: 'content onLoad',
-            data: fetchImgSrc()
-        });
-    }
-});
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//     // Once we receive a message from the app vue
+//     console.log("received...");
+//     if (request.msg === "getimages") {
+//         sendResponse({
+//             from: 'content onLoad',
+//             data: fetchImgSrc()
+//         });
+//     }
+// });
