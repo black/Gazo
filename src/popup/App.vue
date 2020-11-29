@@ -90,9 +90,9 @@ export default {
       });
     }
   },
-  mounted () {  
-     this.getNewImages()
+  mounted () {   
      this.findImages()
+     this.getNewImages()
   }
 }
 

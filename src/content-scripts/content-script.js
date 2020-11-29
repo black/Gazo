@@ -25,13 +25,13 @@ function fetchImgSrc() {
 }
 
 
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//     // Once we receive a message from the app vue
-//     console.log("received...");
-//     if (request.msg === "getimages") {
-//         sendResponse({
-//             from: 'content onLoad',
-//             data: fetchImgSrc()
-//         });
-//     }
-// });
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    // Once we receive a message from the app vue
+    console.log("received...");
+    if (request.msg === "getimages") {
+        sendResponse({
+            from: 'content onLoad',
+            data: fetchImgSrc()
+        });
+    }
+});
