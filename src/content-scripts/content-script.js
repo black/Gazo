@@ -26,8 +26,7 @@ function fetchImgSrc() {
 
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    // Once we receive a message from the app vue
-    console.log("received...");
+    // Once we receive a message from the app vue 
     if (request.msg === "getimages") {
         sendResponse({
             from: 'content onLoad',
