@@ -21,8 +21,24 @@ function fetchImgSrc() {
         // console.log(s_r_c);
         images.push(s_r_c);
     }
-    return images;
+    return images.concat(fetchBgImgSrc());
 }
+
+function fetchBgImgSrc() {
+    return document.body.innerHTML.match(/background-image.+?\((.+?)\)/gi).map(function (e) {
+        return ((e.match(/background-image.+?\((.+?)\)/i) || [])[1] || '').replace(/&quot;|"/g, '')
+    });
+}
+
+// let images = []
+// let alltags = document.getElementsByTagName('*')
+// for (var i = 0; i < document.images.length; i++) {
+//     let s_r_c = document.images[i].src
+//     // console.log(s_r_c);
+//     images.push(s_r_c);
+// }
+// return images;
+// }
 
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {

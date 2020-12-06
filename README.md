@@ -15,10 +15,10 @@ Features
 
  To do : 
 
-  ~~1. Scape dynamically loaded pictures in the page~~
+  1. ~~Scape dynamically loaded pictures in the page~~
   2. Save the img urls into an array and save it in a localstorage
-  ~~3. update the array with new url whne user scrolls the page and images gets updated dynamically~~
-  4. fetch background images url - loaded via CSS 
+  3. ~~update the array with new url whne user scrolls the page and images gets updated dynamically~~
+  4. ~~fetch background images url - loaded via CSS~~
 
 [Download](https://github.com/black/Gazo/blob/main/extension-v.0.0.1.rar)
 
