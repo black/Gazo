@@ -59,8 +59,7 @@ export default {
       browser.tabs.query({ active: true, currentWindow: true }).then(tabs => {
         browser.tabs
           .sendMessage(tabs[0].id, {  from: 'appvue',msg: 'getimages' })
-          .then((res) => {
-            console.log("dataSrc",res.from);
+          .then((res) => { 
             for(let i=0;i<res.data.length;i++){
               console.log("dataSrc",res.data[i]);
               if(!this.imgsrc.includes(res.data[i]))
@@ -76,8 +75,7 @@ export default {
     },
     getNewImages(){
       browser.runtime.onMessage.addListener( (res, sender, sendResponse)=>{   
-          for(let i=0;i<res.data.length;i++){
-            console.log("dataSrc",res.data[i]);
+          for(let i=0;i<res.data.length;i++){ 
             if(!this.imgsrc.includes(res.data[i]))
               this.imgsrc.push(res.data[i]); 
           } 

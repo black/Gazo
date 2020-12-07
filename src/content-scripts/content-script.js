@@ -1,3 +1,5 @@
+console.log("content Script")
+
 //MutationObserver
 const config = {
     childList: true,
@@ -25,28 +27,23 @@ function fetchImgSrc() {
 }
 
 function fetchBgImgSrc() {
-    return document.body.innerHTML.match(/background-image.+?\((.+?)\)/gi).map(function (e) {
-        return ((e.match(/background-image.+?\((.+?)\)/i) || [])[1] || '').replace(/&quot;|"/g, '')
-    });
+    let image = []
+    let elm = document.getElementsByTagName("*")
+    for (let el of elm) {
+        console.log(el.style.backgroundImage.slice(4, -1).replace(/"/g, ""))
+        image.push(el.style.backgroundImage.slice(4, -1).replace(/"/g, ""))
+    }
+    return image;
 }
-
-// let images = []
-// let alltags = document.getElementsByTagName('*')
-// for (var i = 0; i < document.images.length; i++) {
-//     let s_r_c = document.images[i].src
-//     // console.log(s_r_c);
-//     images.push(s_r_c);
-// }
-// return images;
-// }
-
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     // Once we receive a message from the app vue 
+    console.log("called for messages")
     if (request.msg === "getimages") {
         sendResponse({
             from: 'content onLoad',
             data: fetchImgSrc()
         });
     }
+    return true;
 });
