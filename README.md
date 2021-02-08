@@ -6,6 +6,11 @@ A chome extension to scrape images from current tab
 Dowload the dist folder and load it in your chrome browser
 
 
+## or 
+
+## [DOWNLOAD FROM CHROME WEB STORE](https://chrome.google.com/webstore/detail/g-a-z-o/dihhdmpfphldhiagcigcedlcnljkdcdo) 
+
+
 Features
 
  1. Change grid view to 2 columns to 4 columns
