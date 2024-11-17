@@ -1,6 +1,7 @@
 # Gazō 
-## (画像)
-A chome extension to scrape images from current tab
+### (画像)
+
+A simple Chrome extension that allows you to easily scrape and download all images from the current tab. With just a click, the extension identifies and extracts all images, providing an efficient way to collect visual content from websites.
 
 ### How to use? 
 Dowload the dist folder and load it in your chrome browser
